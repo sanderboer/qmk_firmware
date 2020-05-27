@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAK] = LAYOUT_absolem(
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_NO,
     KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,
-    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    SYM,     MISC,    QWERTY,
+    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    SYM,     KC_K,    KC_H,    MISC,    QWERTY,
     KC_NO, KC_NO, MT(MOD_LCTL, KC_TAB), LT(NAV, KC_SPC),  KC_LSHIFT,  MT(MOD_MEH, KC_ENTER),  LT(NUM, KC_BSPACE),  MT(MOD_LGUI, KC_ESCAPE), KC_NO, KC_NO
 ),
    [_QWERTY] = LAYOUT_absolem(
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    [_SYM] = LAYOUT_absolem(
        KC_RABK, KC_RCBR, KC_RBRC, KC_RPRN, KC_BSLASH,  KC_TILD, KC_CIRC, KC_NO, KC_NO,    KC_AT ,
        KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, KC_SLASH,  KC_PERC, KC_ASTR, KC_NO, KC_COLN,  KC_SCLN,
-    KC_HASH, KC_DLR,  KC_QUES, KC_EXLM, KC_PIPE, KC_AMPR, KC_EQL,  KC_NO, KC_PLUS, KC_QUOT,
+    KC_HASH, KC_DLR,  KC_QUES, KC_EXLM, KC_PIPE,  KC_NO, KC_AMPR, KC_EQL, KC_PLUS, KC_QUOT,
     KC_NO,   KC_NO,   KC_UNDS, KC_QUOT,  KC_DQT,  KC_DOT,  KC_COMM, KC_PMNS, KC_NO, KC_NO
 ),
    [_NAV] = LAYOUT_absolem(
