@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAK] = LAYOUT_absolem(
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_NO,
     KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,
-    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    SYM,     KC_K,    KC_H,    MISC,    QWERTY,
+    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    SYM,     KC_H,    KC_K,    MISC,    QWERTY,
     KC_NO, KC_NO, MT(MOD_LCTL, KC_TAB), LT(NAV, KC_SPC),  KC_LSHIFT,  MT(MOD_MEH, KC_ENTER),  LT(NUM, KC_BSPACE),  MT(MOD_LGUI, KC_ESCAPE), KC_NO, KC_NO
 ),
    [_QWERTY] = LAYOUT_absolem(
