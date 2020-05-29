@@ -39,12 +39,12 @@ enum layer_names {
 #define MISC MO(_MISC)
 
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
-#define HSV_COLEMAK 123, 90, 112
+#define HSV_COLEMAK 128, 255, 112
 #define HSV_QWERTY 123, 255, 112
 #define HSV_SYM 200, 255, 112
 #define HSV_NAV 50, 255, 112
 #define HSV_NUM 100, 255, 112
-#define HSV_MISC 150, 255, 112
+#define HSV_MISC 10, 255, 112
 
 const rgblight_segment_t PROGMEM colemak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 2, HSV_COLEMAK}
