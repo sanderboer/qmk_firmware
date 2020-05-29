@@ -38,7 +38,43 @@ enum layer_names {
 #define NUM MO(_NUM)
 #define MISC MO(_MISC)
 
+// Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
+#define HSV_COLEMAK 123, 90, 112
+#define HSV_QWERTY 123, 255, 112
+#define HSV_SYM 200, 255, 112
+#define HSV_NAV 50, 255, 112
+#define HSV_NUM 100, 255, 112
+#define HSV_MISC 150, 255, 112
 
+const rgblight_segment_t PROGMEM colemak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 2, HSV_COLEMAK}
+);
+const rgblight_segment_t PROGMEM qwerty_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 2, HSV_QWERTY}
+);
+const rgblight_segment_t PROGMEM sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 2, HSV_SYM}
+);
+const rgblight_segment_t PROGMEM nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 2, HSV_NAV}
+);
+const rgblight_segment_t PROGMEM num_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 2, HSV_NUM}
+);
+const rgblight_segment_t PROGMEM misc_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 2, HSV_MISC}
+);
+
+
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM absolem_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    colemak_layer,
+    qwerty_layer,
+    sym_layer,
+    num_layer,
+    nav_layer,
+    misc_layer
+);
 
 // Defines the keycodes used by our macros in process_record_user
 enum custom_keycodes {
@@ -109,16 +145,62 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-/*
+void keyboard_post_init_user(void) {
+    // Enable the LED layers
+    rgblight_layers = absolem_rgb_layers;
+    // rgblight_enable_noeeprom(); // enables Rgb, without saving settings
+    // rgblight_sethsv_noeeprom(180, 255, 100); // sets the color to teal/cyan without saving
+    // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
+}
+
+
 void matrix_init_user(void) {
 
 }
+
 
 void matrix_scan_user(void) {
 
 }
 
-bool led_update_user(led_t led_state) {
-    return true;
+layer_state_t layer_state_set_user(layer_state_t state) {
+  // Both layers will light up if both kb layers are active
+  rgblight_set_layer_state(0, layer_state_cmp(state, 0));
+  rgblight_set_layer_state(1, layer_state_cmp(state, 1));
+  rgblight_set_layer_state(2, layer_state_cmp(state, 2));
+  rgblight_set_layer_state(3, layer_state_cmp(state, 3));
+  rgblight_set_layer_state(4, layer_state_cmp(state, 4));
+  rgblight_set_layer_state(5, layer_state_cmp(state, 5));
+
+  //  switch (get_highest_layer(state)) {
+  //    case _COLEMAK:
+  //        rgblight_setrgb (0x00,  0x00, 0xFF);
+  //        break;
+  //    case _QWERTY:
+  //        rgblight_setrgb (0xFF,  0x00, 0x00);
+  //        break;
+  //    case _SYM:
+  //        rgblight_setrgb (0x00,  0xFF, 0x00);
+  //        break;
+  //    case _NAV:
+  //        rgblight_setrgb (0x7A,  0x00, 0xFF);
+  //        break;
+  //    case _NUM:
+  //        rgblight_setrgb (0x7A,  0x00, 0xFF);
+  //        break;
+  //    case _MISC:
+  //        rgblight_setrgb (0x7A,  0x00, 0xFF);
+  //        break;
+  // 
+  //    default: //  for any other layers, or the default layer
+  //        rgblight_setrgb (0xFF,  0x88, 0x00);
+  //        rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); 
+  //        break;
+  //    }
+  return state;
 }
-*/
+
+bool led_update_user(led_t led_state) {
+  // rgblight_set_layer_state(0, led_state.caps_lock);
+  return true;
+}
