@@ -71,8 +71,8 @@ const rgblight_segment_t* const PROGMEM absolem_rgb_layers[] = RGBLIGHT_LAYERS_L
     colemak_layer,
     qwerty_layer,
     sym_layer,
-    num_layer,
     nav_layer,
+    num_layer,
     misc_layer
 );
 
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_MISC] = LAYOUT_absolem(
       LGUI(KC_1),LGUI(KC_2),LGUI(KC_3),LGUI(KC_4),LGUI(KC_5),LGUI(KC_6),LGUI(KC_7),LGUI(KC_8),LGUI(KC_9), LGUI(KC_0),
      KC_MUTE,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLU, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_VOLD, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      RGB_TOG, RGB_VAD, RGB_VAI, RGB_M_B, KC_VOLD, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
                            )
 };
@@ -147,10 +147,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void keyboard_post_init_user(void) {
     // Enable the LED layers
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
     rgblight_layers = absolem_rgb_layers;
     // rgblight_enable_noeeprom(); // enables Rgb, without saving settings
     // rgblight_sethsv_noeeprom(180, 255, 100); // sets the color to teal/cyan without saving
-    // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
 }
 
 
@@ -165,42 +165,46 @@ void matrix_scan_user(void) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   // Both layers will light up if both kb layers are active
-  rgblight_set_layer_state(0, layer_state_cmp(state, 0));
-  rgblight_set_layer_state(1, layer_state_cmp(state, 1));
-  rgblight_set_layer_state(2, layer_state_cmp(state, 2));
-  rgblight_set_layer_state(3, layer_state_cmp(state, 3));
-  rgblight_set_layer_state(4, layer_state_cmp(state, 4));
-  rgblight_set_layer_state(5, layer_state_cmp(state, 5));
+  rgblight_set_layer_state(0, layer_state_cmp(state, _COLEMAK));
+  rgblight_set_layer_state(1, layer_state_cmp(state, _QWERTY));
+  rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));
+  rgblight_set_layer_state(3, layer_state_cmp(state, _NAV));
+  rgblight_set_layer_state(4, layer_state_cmp(state, _NUM));
+  rgblight_set_layer_state(5, layer_state_cmp(state, _MISC));
 
-  //  switch (get_highest_layer(state)) {
-  //    case _COLEMAK:
-  //        rgblight_setrgb (0x00,  0x00, 0xFF);
-  //        break;
-  //    case _QWERTY:
-  //        rgblight_setrgb (0xFF,  0x00, 0x00);
-  //        break;
-  //    case _SYM:
-  //        rgblight_setrgb (0x00,  0xFF, 0x00);
-  //        break;
-  //    case _NAV:
-  //        rgblight_setrgb (0x7A,  0x00, 0xFF);
-  //        break;
-  //    case _NUM:
-  //        rgblight_setrgb (0x7A,  0x00, 0xFF);
-  //        break;
-  //    case _MISC:
-  //        rgblight_setrgb (0x7A,  0x00, 0xFF);
-  //        break;
-  // 
-  //    default: //  for any other layers, or the default layer
-  //        rgblight_setrgb (0xFF,  0x88, 0x00);
-  //        rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); 
-  //        break;
-  //    }
+/*
+ switch (state) {
+  case _COLEMAK:
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); 
+    //      rgblight_setrgb (0x00,  0x00, 0xFF);
+    break;
+  case _QWERTY:
+    rgblight_setrgb (0xFF,  0x00, 0x00);
+    break;
+  case _SYM:
+    rgblight_setrgb (0x00,  0xFF, 0x00);
+    break;
+  case _NAV:
+    rgblight_setrgb (0x7A,  0x00, 0xFF);
+    break;
+  case _NUM:
+    rgblight_setrgb (0x7A,  0x00, 0xFF);
+    break;
+  case _MISC:
+    rgblight_setrgb (0x7A,  0x00, 0xFF);
+    break;
+    
+  default: //  for any other layers, or the default layer
+    rgblight_setrgb (0xFF,  0x88, 0x00);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); 
+    break;
+} 
+*/ 
   return state;
 }
 
 bool led_update_user(led_t led_state) {
   // rgblight_set_layer_state(0, led_state.caps_lock);
+ 
   return true;
 }
