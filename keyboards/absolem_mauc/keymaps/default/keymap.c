@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include <print.h>
 #define LAYOUT_absolem( \
     k00, k01, k02, k03, k04, k05, k06, k07, k08, k09, \
     k10, k11, k12, k13, k14, k15, k16, k17, k18, k19, \
@@ -24,7 +25,7 @@
     { k00, k01, k02, k03, k04, k05, k06, k07, k08, k09 }, \
     { k10, k11, k12, k13, k14, k15, k16, k17, k18, k19 }, \
     { k20, k21, k22, k23, k24, k25, k26, k27, k28, k29 }, \
-    { k30, k31, k32, k33, k34, k35, k36, k37, k38, k39 }  \
+    { KC_NO, KC_NO, k32, k33, k34, k35, k36, k37, KC_NO, KC_NO }  \
 }
 
 // Defines names for use in layer keycodes and the keymap
@@ -40,7 +41,7 @@ enum layer_names {
 
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 #define HSV_COLEMAK 128, 255, 112
-#define HSV_QWERTY 123, 255, 112
+#define HSV_QWERTY 255, 255, 112
 #define HSV_SYM 200, 255, 112
 #define HSV_NAV 50, 255, 112
 #define HSV_NUM 100, 255, 112
@@ -50,7 +51,7 @@ const rgblight_segment_t PROGMEM colemak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 2, HSV_COLEMAK}
 );
 const rgblight_segment_t PROGMEM qwerty_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 2, HSV_QWERTY}
+    {0, 2, HSV_PURPLE}
 );
 const rgblight_segment_t PROGMEM sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 2, HSV_SYM}
@@ -64,7 +65,6 @@ const rgblight_segment_t PROGMEM num_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t PROGMEM misc_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 2, HSV_MISC}
 );
-
 
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM absolem_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
@@ -124,7 +124,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
+  /*
+   *   switch (keycode) {
         case QMKBEST:
             if (record->event.pressed) {
                 // when keycode QMKBEST is pressed
@@ -142,69 +143,50 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
     }
-    return true;
+
+*/
+
+  return true;
 }
 
 void keyboard_post_init_user(void) {
     // Enable the LED layers
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
+  // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
     rgblight_layers = absolem_rgb_layers;
     // rgblight_enable_noeeprom(); // enables Rgb, without saving settings
     // rgblight_sethsv_noeeprom(180, 255, 100); // sets the color to teal/cyan without saving
+    layer_state_set_user(layer_state);
+
 }
 
-
+/*
 void matrix_init_user(void) {
 
 }
-
-
+*/
 void matrix_scan_user(void) {
+  rgblight_set_layer_state(0, layer_state_cmp(default_layer_state, _COLEMAK));
+  rgblight_set_layer_state(1, layer_state_cmp(default_layer_state, _QWERTY));
+
 
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   // Both layers will light up if both kb layers are active
-  rgblight_set_layer_state(0, layer_state_cmp(state, _COLEMAK));
-  rgblight_set_layer_state(1, layer_state_cmp(state, _QWERTY));
   rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));
   rgblight_set_layer_state(3, layer_state_cmp(state, _NAV));
   rgblight_set_layer_state(4, layer_state_cmp(state, _NUM));
   rgblight_set_layer_state(5, layer_state_cmp(state, _MISC));
+#ifdef CONSOLE_ENABLE
+  uprintf("default_layer_state: %u    layer state %u  state: %u \n",default_layer_state, layer_state, state);
+#endif
 
-/*
- switch (state) {
-  case _COLEMAK:
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); 
-    //      rgblight_setrgb (0x00,  0x00, 0xFF);
-    break;
-  case _QWERTY:
-    rgblight_setrgb (0xFF,  0x00, 0x00);
-    break;
-  case _SYM:
-    rgblight_setrgb (0x00,  0xFF, 0x00);
-    break;
-  case _NAV:
-    rgblight_setrgb (0x7A,  0x00, 0xFF);
-    break;
-  case _NUM:
-    rgblight_setrgb (0x7A,  0x00, 0xFF);
-    break;
-  case _MISC:
-    rgblight_setrgb (0x7A,  0x00, 0xFF);
-    break;
-    
-  default: //  for any other layers, or the default layer
-    rgblight_setrgb (0xFF,  0x88, 0x00);
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); 
-    break;
-} 
-*/ 
+
   return state;
 }
 
 bool led_update_user(led_t led_state) {
   // rgblight_set_layer_state(0, led_state.caps_lock);
- 
+
   return true;
 }
