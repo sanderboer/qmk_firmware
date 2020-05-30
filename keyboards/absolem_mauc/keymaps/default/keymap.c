@@ -169,8 +169,15 @@ void matrix_init_user(void) {
 }
 */
 void matrix_scan_user(void) {
-  rgblight_set_layer_state(0, layer_state_cmp(default_layer_state, _COLEMAK));
-  rgblight_set_layer_state(1, layer_state_cmp(default_layer_state, _QWERTY));
+  // rgblight_set_layer_state(0, layer_state_cmp(default_layer_state, _COLEMAK));
+  // rgblight_set_layer_state(1, layer_state_cmp(default_layer_state, _QWERTY));
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+  // Both layers will light up if both kb layers are active
+  rgblight_set_layer_state(0, layer_state_cmp(state, _COLEMAK));
+  rgblight_set_layer_state(1, layer_state_cmp(state, _QWERTY));
+   return state;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -182,8 +189,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef CONSOLE_ENABLE
   uprintf("default_layer_state: %u    layer state %u  state: %u \n",default_layer_state, layer_state, state);
 #endif
-
-
   return state;
 }
 
