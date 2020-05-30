@@ -14,8 +14,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+
+#ifdef CONSOLE_ENABLE
 #include <print.h>
-#define LAYOUT_absolem( \
+#endif
+
+#define LAYOUT_absolem(                               \
     k00, k01, k02, k03, k04, k05, k06, k07, k08, k09, \
     k10, k11, k12, k13, k14, k15, k16, k17, k18, k19, \
     k20, k21, k22, k23, k24, k25, k26, k27, k28, k29, \
@@ -40,30 +44,30 @@ enum layer_names {
 #define MISC MO(_MISC)
 
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
-#define HSV_COLEMAK 128, 255, 112
-#define HSV_QWERTY 255, 255, 112
-#define HSV_SYM 200, 255, 112
-#define HSV_NAV 50, 255, 112
-#define HSV_NUM 100, 255, 112
-#define HSV_MISC 10, 255, 112
+#define HSV_COLEMAK 128, 255, 170
+#define HSV_QWERTY 0, 0, 170
+#define HSV_SYM 70, 255, 170
+#define HSV_NAV 170, 170, 170
+#define HSV_NUM 0, 170, 170
+#define HSV_MISC 200, 170, 170
 
 const rgblight_segment_t PROGMEM colemak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 2, HSV_COLEMAK}
 );
 const rgblight_segment_t PROGMEM qwerty_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 2, HSV_PURPLE}
+    {0, 2, HSV_QWERTY}
 );
 const rgblight_segment_t PROGMEM sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 2, HSV_SYM}
+    {0, 1, HSV_SYM}
 );
 const rgblight_segment_t PROGMEM nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 2, HSV_NAV}
+    {0, 1, HSV_NAV}
 );
 const rgblight_segment_t PROGMEM num_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 2, HSV_NUM}
+    {0, 1, HSV_NUM}
 );
 const rgblight_segment_t PROGMEM misc_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 2, HSV_MISC}
+    {0, 1, HSV_MISC}
 );
 
 // Now define the array of layers. Later layers take precedence
@@ -167,8 +171,6 @@ void matrix_init_user(void) {
 void matrix_scan_user(void) {
   rgblight_set_layer_state(0, layer_state_cmp(default_layer_state, _COLEMAK));
   rgblight_set_layer_state(1, layer_state_cmp(default_layer_state, _QWERTY));
-
-
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
