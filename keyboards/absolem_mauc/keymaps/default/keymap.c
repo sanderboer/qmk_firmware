@@ -52,10 +52,10 @@ enum layer_names {
 #define HSV_MISC 200, 170, 170
 
 const rgblight_segment_t PROGMEM colemak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 2, HSV_COLEMAK}
+    {0, 1, HSV_COLEMAK}
 );
 const rgblight_segment_t PROGMEM qwerty_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 2, HSV_QWERTY}
+    {0, 1, HSV_QWERTY}
 );
 const rgblight_segment_t PROGMEM sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 1, HSV_SYM}
@@ -121,8 +121,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ),
   [_MISC] = LAYOUT_absolem(
       LGUI(KC_1),LGUI(KC_2),LGUI(KC_3),LGUI(KC_4),LGUI(KC_5),LGUI(KC_6),LGUI(KC_7),LGUI(KC_8),LGUI(KC_9), LGUI(KC_0),
-     KC_MUTE,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLU, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      RGB_TOG, RGB_VAD, RGB_VAI, RGB_M_B, KC_VOLD, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+     KC_MUTE,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLU, RGB_HUI, RGB_SAI, RGB_VAI, KC_NO, KC_NO,
+      RGB_TOG, RGB_MOD, RGB_VAI, RGB_M_B, KC_VOLD, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
                            )
 };
@@ -155,11 +155,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void keyboard_post_init_user(void) {
     // Enable the LED layers
-  // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
-    rgblight_layers = absolem_rgb_layers;
+  //rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
+  rgblight_layers = absolem_rgb_layers;
     // rgblight_enable_noeeprom(); // enables Rgb, without saving settings
     // rgblight_sethsv_noeeprom(180, 255, 100); // sets the color to teal/cyan without saving
-    layer_state_set_user(layer_state);
+  layer_state_set_user(layer_state);
 
 }
 
