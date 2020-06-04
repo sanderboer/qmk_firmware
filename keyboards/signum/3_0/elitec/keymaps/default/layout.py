@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8; compile-command: (concat "pushd " sndr-project-root "keyboards/signum/3_0/elitec/keymaps/default && python3 generate_km.py && pushd " sndr-project-root " && lxqt-sudo make signum/3_0/elitec:default:dfu"); -*-
 
 # Add all used Unicode symbols to this list.
 # The key (e.g. "SNEK") is used in keymap.c for "enum", "unicode_map" and "keymaps", so it needs to be a valid C variable name.
@@ -438,12 +438,11 @@ qwerty = [
 
 # 1
 colemak = [
-    "Tab",     "q",    "w",       "f",       "p",       "g",       "j",       "l",       "u",       "y",       ";",       "[",
-    "LCtTEsc", "a",    "r",       "s",       "t",       "d",       "h",       "n",       "e",       "i",       "o",       "'",
-    "LShift(", "z",    "x",       "c",       "v",       "b",       "k",       "m",       ",",       ".",       "/",       "RShift)",
+    "Tab",     "q",    "w",       "f",       "p",       "b",       "j",       "l",       "u",       "y",       ";",       "[",
+    "LCtTEsc", "a",    "r",       "s",       "t",       "g",       "m",       "n",       "e",       "i",       "o",       "'",
+    "LShift(", "z",    "x",       "c",       "d",       "v",       ",",       "h",       "k",       ".",       "/",       "RShift)",
     "LCtrl[",  "LAlt", "LGui",    "TT2",     "LT6_SPC", "LT4_DEL", "LT4_ENT", "Space",   "LT2_BSP", "RGui",    "RLAlt",    "RCtrl]",
     ]
-
 # 2
 numpad = [
     "`",       "1",    "2",       "3",       "4",       "5",       "6",       "7",       "8",       "9",       "0",       "]",
@@ -485,8 +484,8 @@ mouse = [
     ]
 
 layers = [
-    qwerty,
     colemak,
+    qwerty,
     numpad,
     fpad,
     movement,
