@@ -29,17 +29,6 @@
   {KC_NO, KC_NO, KC_NO, k32, k33,  k34, k35, k36, k37, KC_NO, KC_NO, KC_NO } \
 }
 
-// Defines names for use in layer keycodes and the keymap
-enum layer_names {
-  _COLEMAK, _QWERTY, _SYM, _NAV, _NUM, _MISC
-};
-#define COLEMAK DF(_COLEMAK)
-#define QWERTY DF(_QWERTY)
-#define SYM MO(_SYM)
-#define NAV MO(_NAV)
-#define NUM MO(_NUM)
-#define MISC MO(_MISC)
-
 #include "absolem_layouts.h"
 
 /*

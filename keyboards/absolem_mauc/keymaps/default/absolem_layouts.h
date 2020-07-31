@@ -9,12 +9,13 @@
 
 #define ABSOLEM_LAYOUTS_H
 // Defines names for use in layer keycodes and the keymap
+
 enum layer_names {
-  _COLEMAK_ORG,_COLEMAK, _QWERTY, _SYM, _NAV, _NUM, _MISC
+  _COLEMAK, _SYM, _NAV, _NUM, _MISC
 };
-#define COLEMAK_ORG DF(_COLEMAK_ORG)
+// #define COLEMAK_ORG DF(_COLEMAK_ORG)
 #define COLEMAK DF(_COLEMAK)
-#define QWERTY DF(_QWERTY)
+// #define QWERTY DF(_QWERTY)
 #define SYM MO(_SYM)
 #define NAV MO(_NAV)
 #define NUM MO(_NUM)
@@ -72,19 +73,18 @@ const uint16_t PROGMEM d_h_combo[] = {KC_D, KC_H, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     // left hand combinations.
-  COMBO(q_w_combo, KC_TAB),
-  COMBO(w_f_combo, KC_QUES),
-  COMBO(f_p_combo, KC_UNDS),
-  COMBO(p_b_combo, KC_PIPE),
-  COMBO(w_p_combo, PRVTAB),
-  COMBO(z_x_combo, KC_ENT),
-  COMBO(x_c_combo, LCTL(KC_W)),
+  COMBO(q_w_combo, KC_LEFT),
+  COMBO(w_f_combo, KC_DOWN),
+  COMBO(f_p_combo, KC_UP),
+  COMBO(p_b_combo, KC_RIGHT),
+  COMBO(z_x_combo, KC_ESCAPE),
+  COMBO(x_c_combo, LGUI(KC_Q)),
   COMBO(c_d_combo, KC_DELT),
-  COMBO(d_v_combo, KC_TILD),
+  COMBO(d_v_combo, PRVTAB),
     // right hand combinations.
-  COMBO(u_y_combo, KC_BSPC),
-  COMBO(l_u_combo, KC_SLSH),
-  COMBO(j_l_combo, KC_MINS),
+  COMBO(u_y_combo, KC_BSPACE),
+  COMBO(l_u_combo, KC_DELT),
+  COMBO(j_l_combo, KC_ESCAPE),
   COMBO(k_h_combo, NXTTAB),
   // both hand combinations.
   COMBO(d_h_combo, KC_ENT),
@@ -92,25 +92,24 @@ combo_t key_combos[COMBO_COUNT] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
-  [_COLEMAK_ORG] = LAYOUT_absolem(
-      KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_BSPACE,
-      KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,
-      KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,     KC_H,   NUM,     MISC,    QWERTY,
-      KC_NO, KC_NO, MT(MOD_LCTL, KC_TAB), MT(MOD_LGUI, KC_SPC), MT(MOD_LALT, KC_ESCAPE),  MT(MOD_LSFT, KC_ESCAPE),  LT(NAV, KC_BSPACE),  LT(SYM, KC_ENTER), KC_NO, KC_NO
-                              ),
+  // [_COLEMAK_ORG] = LAYOUT_absolem(
+  //    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_BSPACE,
+  //    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,
+  //    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,     KC_H,   NUM,     MISC,    QWERTY,
+  //    KC_NO, KC_NO, MT(MOD_LCTL, KC_TAB), MT(MOD_LGUI, KC_SPC), MT(MOD_LALT, KC_ESCAPE),  MT(MOD_LSFT, KC_ESCAPE),  LT(NAV, KC_BSPACE),  LT(SYM, KC_ENTER), KC_NO, KC_NO ),
 
  [_COLEMAK] = LAYOUT_absolem(
       KC_Q,  KC_W,  KC_F,     KC_P,    KC_B,   KC_J,   KC_L,      KC_U,    KC_Y,    KC_ESCAPE,
       KC_A,  CT_R,  SH_S,     AL_T,    GU_G,   GU_M,   AL_N,      SH_E,    CT_I,    KC_O,
-      KC_Z,  KC_X,  KC_C,     KC_D,    KC_V,   KC_K,   KC_H,      KC_DOT,  KC_COMM, COLEMAK_ORG,
+      KC_Z,  KC_X,  KC_C,     KC_D,    KC_V,   KC_K,   KC_H,      KC_DOT,  KC_COMM, KC_SLASH,
       KC_NO, KC_NO, TAB_MISC, SPC_NUM, KC_NO,  KC_NO,  BSPC_NAV,  ENT_SYM, KC_NO,   KC_NO
                               ),
 
-  [_QWERTY] = LAYOUT_absolem(
-      KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P,
-      KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_ALGR,
-      KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, NUM,  MISC, COLEMAK,
-      KC_NO, KC_NO, MT(MOD_LCTL, KC_TAB), MT(MOD_LGUI, KC_SPC), MT(MOD_LALT, KC_ESCAPE),  MT(MOD_LSFT, KC_ENTER),  LT(NAV, KC_BSPACE),  LT(SYM, KC_ESCAPE), KC_NO, KC_NO                             ),
+  // [_QWERTY] = LAYOUT_absolem(
+  //    KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P,
+  //    KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_ALGR,
+  //    KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, NUM,  MISC, COLEMAK,
+  //    KC_NO, KC_NO, MT(MOD_LCTL, KC_TAB), MT(MOD_LGUI, KC_SPC), MT(MOD_LALT, KC_ESCAPE),  MT(MOD_LSFT, KC_ENTER),  LT(NAV, KC_BSPACE),  LT(SYM, KC_ESCAPE), KC_NO, KC_NO  ),
 
    [_SYM] = LAYOUT_absolem(
        KC_RABK, KC_RCBR, KC_RBRC, KC_RPRN, KC_BSLASH,  KC_TILD, KC_CIRC, KC_PMNS, KC_PLUS, KC_AT ,

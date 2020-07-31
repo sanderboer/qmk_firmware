@@ -15,6 +15,6 @@
  */
 
 #pragma once
-#define COMBO_COUNT 14
-#define COMBO_TERM 200
+#define COMBO_COUNT 13
+#define COMBO_TERM 75
 // place overrides here
