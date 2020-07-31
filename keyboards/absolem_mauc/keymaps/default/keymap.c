@@ -35,20 +35,13 @@
 
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 #define HSV_COLEMAK 128, 255, 170
-#define HSV_QWERTY 0, 0, 170
 #define HSV_SYM 70, 255, 170
 #define HSV_NAV 170, 170, 170
 #define HSV_NUM 0, 170, 170
 #define HSV_MISC 200, 170, 170
 
-const rgblight_segment_t PROGMEM colemak_org_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 1, HSV_COLEMAK}
-);
 const rgblight_segment_t PROGMEM colemak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 1, HSV_COLEMAK}
-);
-const rgblight_segment_t PROGMEM qwerty_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 1, HSV_QWERTY}
 );
 const rgblight_segment_t PROGMEM sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 1, HSV_SYM}
@@ -65,9 +58,7 @@ const rgblight_segment_t PROGMEM misc_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM absolem_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    colemak_org_layer,
     colemak_layer,
-    qwerty_layer,
     sym_layer,
     nav_layer,
     num_layer,

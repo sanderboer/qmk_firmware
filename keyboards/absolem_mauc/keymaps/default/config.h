@@ -17,4 +17,5 @@
 #pragma once
 #define COMBO_COUNT 13
 #define COMBO_TERM 75
+#define TAPPING_TERM 75
 // place overrides here
