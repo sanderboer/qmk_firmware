@@ -33,17 +33,6 @@
     { KC_NO, KC_NO, k32, k33, k34, k35, k36, k37, KC_NO, KC_NO }  \
 }
 
-// Defines names for use in layer keycodes and the keymap
-enum layer_names {
-  _COLEMAK, _QWERTY, _SYM, _NAV, _NUM, _MISC
-};
-#define COLEMAK DF(_COLEMAK)
-#define QWERTY DF(_QWERTY)
-#define SYM MO(_SYM)
-#define NAV MO(_NAV)
-#define NUM MO(_NUM)
-#define MISC MO(_MISC)
-
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 #define HSV_COLEMAK 128, 255, 170
 #define HSV_QWERTY 0, 0, 170
@@ -52,6 +41,9 @@ enum layer_names {
 #define HSV_NUM 0, 170, 170
 #define HSV_MISC 200, 170, 170
 
+const rgblight_segment_t PROGMEM colemak_org_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 1, HSV_COLEMAK}
+);
 const rgblight_segment_t PROGMEM colemak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 1, HSV_COLEMAK}
 );
@@ -73,6 +65,7 @@ const rgblight_segment_t PROGMEM misc_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM absolem_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    colemak_org_layer,
     colemak_layer,
     qwerty_layer,
     sym_layer,

@@ -8,13 +8,102 @@
    ======================================================================== */
 
 #define ABSOLEM_LAYOUTS_H
+// Defines names for use in layer keycodes and the keymap
+enum layer_names {
+  _COLEMAK_ORG,_COLEMAK, _QWERTY, _SYM, _NAV, _NUM, _MISC
+};
+#define COLEMAK_ORG DF(_COLEMAK_ORG)
+#define COLEMAK DF(_COLEMAK)
+#define QWERTY DF(_QWERTY)
+#define SYM MO(_SYM)
+#define NAV MO(_NAV)
+#define NUM MO(_NUM)
+#define MISC MO(_MISC)
+
+// home row mods.
+#define CT_R LCTL_T(KC_R)
+#define SH_S LSFT_T(KC_S)
+#define AL_T LALT_T(KC_T)
+#define GU_G LGUI_T(KC_G)
+
+#define CT_I RCTL_T(KC_I)
+#define SH_E RSFT_T(KC_E)
+#define AL_N RALT_T(KC_N)
+#define GU_M RGUI_T(KC_M)
+
+// layer toggle.
+#define TAB_MISC LT(MISC, KC_TAB)
+#define SPC_NUM LT(NUM, KC_SPC)
+#define BSPC_NAV LT(NAV, KC_BSPACE)
+#define ENT_SYM LT(SYM,KC_ENTER)
+
+// left hand combinations.
+const uint16_t PROGMEM q_w_combo[] = {KC_Q, KC_W, COMBO_END};
+const uint16_t PROGMEM w_f_combo[] = {KC_W, KC_F, COMBO_END};
+const uint16_t PROGMEM f_p_combo[] = {KC_F, KC_P, COMBO_END};
+const uint16_t PROGMEM p_b_combo[] = {KC_P, KC_B, COMBO_END};
+const uint16_t PROGMEM w_p_combo[] = {KC_W, KC_P, COMBO_END};
+const uint16_t PROGMEM z_x_combo[] = {KC_Z, KC_X, COMBO_END};
+const uint16_t PROGMEM x_c_combo[] = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM c_d_combo[] = {KC_C, KC_D, COMBO_END};
+const uint16_t PROGMEM d_v_combo[] = {KC_D, KC_V, COMBO_END};
+
+// right hand combinations.
+const uint16_t PROGMEM u_y_combo[] = {KC_U, KC_Y, COMBO_END};
+const uint16_t PROGMEM l_u_combo[] = {KC_L, KC_U, COMBO_END};
+const uint16_t PROGMEM j_l_combo[] = {KC_J, KC_L, COMBO_END};
+const uint16_t PROGMEM k_h_combo[] = {KC_K, KC_H, COMBO_END};
+
+// both hand combinations.
+const uint16_t PROGMEM d_h_combo[] = {KC_D, KC_H, COMBO_END};
+// common shortcuts for windows and linux that i use.
+#define NXTTAB LCTL(KC_PGDN)
+#define PRVTAB LCTL(KC_PGUP)
+#define UPTAB  LCTL(LSFT(KC_PGUP))
+#define DNTAB  LCTL(LSFT(KC_PGDN))
+#define NXTWIN LALT(KC_TAB)
+#define PRVWIN LALT(LSFT(KC_TAB))
+#define CALDL  LCTL(LALT(KC_DELT))
+#define TSKMGR LCTL(LSFT(KC_ESC))
+#define EXPLR  LGUI(KC_E)
+#define LCKGUI LGUI(KC_L)
+#define CONPST LSFT(KC_INS)
+#define CLSGUI LALT(KC_F4)
+
+combo_t key_combos[COMBO_COUNT] = {
+    // left hand combinations.
+  COMBO(q_w_combo, KC_TAB),
+  COMBO(w_f_combo, KC_QUES),
+  COMBO(f_p_combo, KC_UNDS),
+  COMBO(p_b_combo, KC_PIPE),
+  COMBO(w_p_combo, PRVTAB),
+  COMBO(z_x_combo, KC_ENT),
+  COMBO(x_c_combo, LCTL(KC_W)),
+  COMBO(c_d_combo, KC_DELT),
+  COMBO(d_v_combo, KC_TILD),
+    // right hand combinations.
+  COMBO(u_y_combo, KC_BSPC),
+  COMBO(l_u_combo, KC_SLSH),
+  COMBO(j_l_combo, KC_MINS),
+  COMBO(k_h_combo, NXTTAB),
+  // both hand combinations.
+  COMBO(d_h_combo, KC_ENT),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
-  [_COLEMAK] = LAYOUT_absolem(
+  [_COLEMAK_ORG] = LAYOUT_absolem(
       KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_BSPACE,
       KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,
       KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,     KC_H,   NUM,     MISC,    QWERTY,
       KC_NO, KC_NO, MT(MOD_LCTL, KC_TAB), MT(MOD_LGUI, KC_SPC), MT(MOD_LALT, KC_ESCAPE),  MT(MOD_LSFT, KC_ESCAPE),  LT(NAV, KC_BSPACE),  LT(SYM, KC_ENTER), KC_NO, KC_NO
+                              ),
+
+ [_COLEMAK] = LAYOUT_absolem(
+      KC_Q,  KC_W,  KC_F,     KC_P,    KC_B,   KC_J,   KC_L,      KC_U,    KC_Y,    KC_ESCAPE,
+      KC_A,  CT_R,  SH_S,     AL_T,    GU_G,   GU_M,   AL_N,      SH_E,    CT_I,    KC_O,
+      KC_Z,  KC_X,  KC_C,     KC_D,    KC_V,   KC_K,   KC_H,      KC_DOT,  KC_COMM, COLEMAK_ORG,
+      KC_NO, KC_NO, TAB_MISC, SPC_NUM, KC_NO,  KC_NO,  BSPC_NAV,  ENT_SYM, KC_NO,   KC_NO
                               ),
 
   [_QWERTY] = LAYOUT_absolem(
