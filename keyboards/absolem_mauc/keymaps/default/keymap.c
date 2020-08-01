@@ -73,7 +73,6 @@ enum custom_keycodes {
 
 #include "absolem_layouts.h"
 
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   /*
    *   switch (keycode) {
@@ -94,9 +93,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
     }
-
 */
-
   return true;
 }
 
@@ -107,14 +104,13 @@ void keyboard_post_init_user(void) {
     // rgblight_enable_noeeprom(); // enables Rgb, without saving settings
     // rgblight_sethsv_noeeprom(180, 255, 100); // sets the color to teal/cyan without saving
   layer_state_set_user(layer_state);
-
 }
 
 /*
 void matrix_init_user(void) {
-
 }
 */
+
 void matrix_scan_user(void) {
   // rgblight_set_layer_state(0, layer_state_cmp(default_layer_state, _COLEMAK));
   // rgblight_set_layer_state(1, layer_state_cmp(default_layer_state, _QWERTY));
@@ -123,7 +119,6 @@ void matrix_scan_user(void) {
 layer_state_t default_layer_state_set_user(layer_state_t state) {
   // Both layers will light up if both kb layers are active
   rgblight_set_layer_state(0, layer_state_cmp(state, _COLEMAK));
-  rgblight_set_layer_state(1, layer_state_cmp(state, _QWERTY));
    return state;
 }
 
@@ -141,6 +136,5 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool led_update_user(led_t led_state) {
   // rgblight_set_layer_state(0, led_state.caps_lock);
-
   return true;
 }
