@@ -27,30 +27,30 @@ enum layer_names {
 #define AL_T LALT_T(KC_T)
 #define GU_G LGUI_T(KC_G)
 
-#define GU_M RGUI_T(KC_M)
-#define AL_N RALT_T(KC_N)
-#define SH_E RSFT_T(KC_E)
-#define CT_I RCTL_T(KC_I)
+#define GU_M LGUI_T(KC_M)
+#define AL_N LALT_T(KC_N)
+#define SH_E LSFT_T(KC_E)
+#define CT_I LCTL_T(KC_I)
 
 #define CT_LEFT  LCTL_T(KC_LEFT)
 #define SH_DOWN  LSFT_T(KC_DOWN)
 #define AL_RIGHT LALT_T(KC_RIGHT)
 #define GU_XTRA  LGUI_T(LGUI(KC_GRAVE))
 
-#define GU_PLS RGUI_T(KC_PPLS)
-#define AL_P4  RALT_T(KC_P4)
-#define SH_P5  RSFT_T(KC_P5)
-#define CT_P6  RCTL_T(KC_P6)
+#define GU_PLS LGUI_T(KC_PPLS)
+#define AL_P4  LALT_T(KC_P4)
+#define SH_P5  LSFT_T(KC_P5)
+#define CT_P6  LCTL_T(KC_P6)
 
 #define CT_4     LCTL_T(KC_4)
 #define SH_5     LSFT_T(KC_5)
 #define AL_6     LALT_T(KC_6)
 #define GU_PDOT  LGUI_T(KC_PDOT)
 
-#define GU_F6  RGUI_T(KC_F6)
-#define AL_F7  RALT_T(KC_F7)
-#define SH_F8  RSFT_T(KC_F8)
-#define CT_F9  RCTL_T(KC_F9)
+#define GU_F6  LGUI_T(KC_F6)
+#define AL_F7  LALT_T(KC_F7)
+#define SH_F8  LSFT_T(KC_F8)
+#define CT_F9  LCTL_T(KC_F9)
 
 
 // layer toggle.
