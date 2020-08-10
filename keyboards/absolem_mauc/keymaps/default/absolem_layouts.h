@@ -94,21 +94,13 @@ const uint16_t PROGMEM d_h_combo[] = {KC_D, KC_H, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     // left hand combinations.
-  COMBO(q_w_combo, KC_LEFT),
-  COMBO(w_f_combo, KC_DOWN),
-  COMBO(f_p_combo, KC_UP),
-  COMBO(p_b_combo, KC_RIGHT),
-  COMBO(z_x_combo, KC_ESCAPE),
-  COMBO(x_c_combo, LGUI(KC_Q)),
-  COMBO(c_d_combo, KC_DELT),
-  COMBO(d_v_combo, PRVTAB),
+  COMBO(q_w_combo, KC_ESCAPE),
+  COMBO(p_b_combo, LSFT(KC_TAB) ),
+  COMBO(d_v_combo, KC_HOME),
     // right hand combinations.
-  COMBO(u_y_combo, KC_BSPACE),
-  COMBO(l_u_combo, KC_DELT),
-  COMBO(j_l_combo, KC_ESCAPE),
-  COMBO(k_h_combo, NXTTAB),
-  // both hand combinations.
-  COMBO(d_h_combo, KC_ENT),
+  COMBO(u_y_combo, KC_DELT),
+  COMBO(j_l_combo, KC_TAB),
+  COMBO(k_h_combo, KC_END),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

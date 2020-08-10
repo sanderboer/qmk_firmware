@@ -16,7 +16,7 @@
 
 #pragma once
 // Default tapping term is 200
-#define TAPPING_TERM 180
+#define TAPPING_TERM 300
 #define TAPPING_TERM_PER_KEY
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
@@ -29,7 +29,7 @@
 #define PERMISSIVE_HOLD
 
 
-#define COMBO_COUNT 13
+#define COMBO_COUNT 6
 #define COMBO_TERM 70
 // #define PERMISSIVE_HOLD
 // place overrides here
