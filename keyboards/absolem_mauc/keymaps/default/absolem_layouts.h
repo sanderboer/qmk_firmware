@@ -58,6 +58,8 @@ enum layer_names {
 #define SPC_NUM LT(NUM, KC_SPC)
 #define BSPC_NAV LT(NAV, KC_BSPACE)
 #define ENT_SYM LT(SYM,KC_ENTER)
+#define ESC_SYM LT(SYM, KC_ESCAPE)
+
 
 // left hand combinations.
 const uint16_t PROGMEM q_w_combo[] = {KC_Q, KC_W, COMBO_END};
@@ -95,21 +97,21 @@ const uint16_t PROGMEM d_h_combo[] = {KC_D, KC_H, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     // left hand combinations.
   COMBO(q_w_combo, KC_ESCAPE),
-  COMBO(p_b_combo, LSFT(KC_TAB) ),
+  COMBO(p_b_combo, KC_INSERT ),
   COMBO(d_v_combo, KC_HOME),
     // right hand combinations.
-  COMBO(u_y_combo, KC_DELT),
-  COMBO(j_l_combo, KC_TAB),
+  COMBO(u_y_combo, KC_ENTER),
+  COMBO(j_l_combo, KC_DELT),
   COMBO(k_h_combo, KC_END),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
  [_COLEMAK] = LAYOUT_absolem(
-      KC_Q,  KC_W,  KC_F,     KC_P,    KC_B,   KC_J,   KC_L,      KC_U,    KC_Y,    KC_ESCAPE,
+      KC_Q,  KC_W,  KC_F,     KC_P,    KC_B,   KC_J,   KC_L,      KC_U,    KC_Y,    KC_ENTER,
       KC_A,  CT_R,  SH_S,     AL_T,    GU_G,   GU_M,   AL_N,      SH_E,    CT_I,    KC_O,
       KC_Z,  KC_X,  KC_C,     KC_D,    KC_V,   KC_K,   KC_H,      KC_DOT,  KC_COMM, KC_SLASH,
-      KC_NO, KC_NO, TAB_MISC, SPC_NUM, KC_NO,  KC_NO,  BSPC_NAV,  ENT_SYM, KC_NO,   KC_NO
+      KC_NO, KC_NO, TAB_MISC, SPC_NUM, KC_NO,  KC_NO,  BSPC_NAV,  ESC_SYM, KC_NO,   KC_NO
                               ),
 
  [_SYM] = LAYOUT_absolem(
@@ -121,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_absolem(
       KC_PGUP,   KC_NO,   KC_UP,   KC_NO,    LCTL(KC_GRAVE),   KC_PMNS, KC_P7, KC_P8,  KC_P9, KC_EQL,
-      KC_PGDOWN, CT_LEFT, SH_DOWN, AL_RIGHT, GU_XTRA,          GU_PLS,  AL_P4, SH_P5,  CT_P6, KC_PDOT,
+      KC_PGDOWN, KC_LEFT, KC_DOWN, KC_RIGHT, LGUI(KC_GRAVE),          GU_PLS,  AL_P4, SH_P5,  CT_P6, KC_PDOT,
       KC_APP,    KC_HOME, KC_SPC,  KC_END,   LCA(KC_GRAVE),    KC_P0,   KC_P1, KC_P2,  KC_P3, KC_PCMM,
       KC_NO,     KC_NO,   KC_LCTL, KC_LGUI,  KC_NO,            KC_NO,   KC_NO, KC_NO,  KC_NO, KC_NO
                            ),
