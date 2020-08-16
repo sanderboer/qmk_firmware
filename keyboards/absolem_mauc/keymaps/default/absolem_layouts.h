@@ -136,10 +136,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ),
 
   [_MISC] = LAYOUT_absolem(
-     LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5), LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), LGUI(KC_0),
-     KC_MUTE,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLU,    RGB_HUI,    RGB_SAI,    RGB_VAI,    KC_NO,      KC_NO,
-     RGB_TOG,    RGB_MOD,    RGB_VAI,    RGB_M_B,    KC_VOLD,    KC_NLCK,      KC_NO,      KC_NO,      KC_NO,      KC_NO,
-     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO
+      LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5),    LGUI(KC_0), RGB_TOG, RGB_MOD,  RGB_VAI,    RGB_M_B,
+      LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), KC_VOLU,       KC_NLCK,     KC_LALT, KC_LSFT,  KC_LCTL,    KC_NO,
+      KC_MUTE,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLD,       RGB_HUI,     RGB_SAI, RGB_VAI,  KC_NO,      KC_NO,
+      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,         KC_NO,       KC_NO,    KC_NO,    KC_NO,      KC_NO
                            )
 
 };
