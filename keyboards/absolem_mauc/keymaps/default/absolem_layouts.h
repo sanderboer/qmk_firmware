@@ -47,10 +47,10 @@ enum layer_names {
 #define AL_6     LALT_T(KC_6)
 #define GU_PDOT  LGUI_T(KC_PDOT)
 
-#define GU_F6  LGUI_T(KC_F6)
-#define AL_F7  LALT_T(KC_F7)
+#define GU_F10  LGUI_T(KC_F10)
+#define AL_F9  LALT_T(KC_F9)
 #define SH_F8  LSFT_T(KC_F8)
-#define CT_F9  LCTL_T(KC_F9)
+#define CT_F7  LCTL_T(KC_F7)
 
 
 // layer toggle.
@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NUM] = LAYOUT_absolem(
       KC_F1,  KC_F2,  KC_F3, KC_F4,   KC_F5,          KC_PMNS, KC_7,   KC_8, KC_9,  KC_EQL,
-      GU_F6,  AL_F7,  SH_F8, CT_F9,   KC_F10,         KC_PPLS, CT_4,   SH_5, AL_6,  GU_PDOT,
+      KC_F6,  CT_F7,  SH_F8, AL_F9,   GU_F10,         KC_PPLS, CT_4,   SH_5, AL_6,  GU_PDOT,
       KC_F11, KC_F12, KC_NO, KC_NO,   KC_PSCR,        KC_0,    KC_1,   KC_2, KC_3,  KC_PCMM,
       KC_NO,   KC_NO,  KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS,    KC_TRNS, KC_TRNS, KC_NO, KC_NO
                           ),
