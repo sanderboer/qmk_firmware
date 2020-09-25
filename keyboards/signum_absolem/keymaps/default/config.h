@@ -28,7 +28,7 @@
 // This prevents short hold periods to be interpreted as individual taps when typing quickly.
 #define PERMISSIVE_HOLD
 
-#define COMBO_COUNT 10
+#define COMBO_COUNT 8
 #define COMBO_TERM 20
 // #define PERMISSIVE_HOLD
 // place overrides here
