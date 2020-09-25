@@ -54,13 +54,50 @@ enum layer_names {
 
 
 // layer toggle.
-#define TAB_MISC LT(MISC, KC_TAB)
 #define SPC_NUM LT(NUM, KC_SPC)
-#define BSPC_NAV LT(NAV, KC_BSPACE)
+#define TAB_MISC LT(MISC, KC_TAB)
+#define BSPC_MISC LT(MISC, KC_BSPACE)
 #define ENT_SYM LT(SYM,KC_ENTER)
+#define BSPC_NAV LT(NAV, KC_BSPACE)
+#define SPC_NAV LT(NAV, KC_SPACE)
 #define ESC_SYM LT(SYM, KC_ESCAPE)
 #define DEL_SYM LT(SYM, KC_DELT)
+#define BSPC_SYM LT(SYM, KC_BSPC)
 
+enum custom_keycodes {
+    QMKBEST = SAFE_RANGE,
+    QMKURL,
+    MY_RESET,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case QMKBEST:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            SEND_STRING("QMK is the best thing ever!");
+        } else {
+            // when keycode QMKBEST is released
+        }
+        break;
+
+    case QMKURL:
+        if (record->event.pressed) {
+            // when keycode QMKURL is pressed
+            SEND_STRING("https://qmk.fm/\n");
+        } else {
+            // when keycode QMKURL is released
+        }
+        break;
+
+    case MY_RESET:
+        if (record->event.pressed) {
+           reset_keyboard(); // selects all and copies
+        }
+        break;
+    }
+    return true;
+};
 
 // left hand combinations.
 const uint16_t PROGMEM q_w_combo[] = {KC_Q, KC_W, COMBO_END};
@@ -76,17 +113,16 @@ const uint16_t PROGMEM x_d_combo[] = {KC_X, KC_D, COMBO_END};
 const uint16_t PROGMEM x_c_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM c_d_combo[] = {KC_C, KC_D, COMBO_END};
 const uint16_t PROGMEM c_v_combo[] = {KC_C, KC_V, COMBO_END};
-const uint16_t PROGMEM d_v_combo[] = {KC_D, KC_V, COMBO_END};
+const uint16_t PROGMEM z_b_combo[] = {KC_Z, KC_B, COMBO_END};
 
 // right hand combinations.
 const uint16_t PROGMEM y_sc_combo[] = {KC_Y, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM l_u_combo[] = {KC_L, KC_U, COMBO_END};
 const uint16_t PROGMEM j_l_combo[] = {KC_J, KC_L, COMBO_END};
 const uint16_t PROGMEM k_h_combo[] = {KC_K, KC_H, COMBO_END};
+const uint16_t PROGMEM j_slash_combo[] = {KC_J, KC_SLASH, COMBO_END};
 
-// both hand combinations.
-const uint16_t PROGMEM d_h_combo[] = {KC_D, KC_H, COMBO_END};
-// common shortcuts for windows and linux that i use.
+
 #define NXTTAB LCTL(KC_PGDN)
 #define PRVTAB LCTL(KC_PGUP)
 #define UPTAB  LCTL(LSFT(KC_PGUP))
@@ -103,16 +139,19 @@ const uint16_t PROGMEM d_h_combo[] = {KC_D, KC_H, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     // left hand combinations.
   COMBO(q_w_combo, KC_ESCAPE),
-  COMBO(p_b_combo, KC_INSERT),
   COMBO(x_d_combo, KC_HOME),
+  COMBO(z_x_combo, KC_INSERT),
+  COMBO(p_b_combo, KC_TAB),
   COMBO(c_v_combo, KC_END),
+  COMBO(j_slash_combo, RESET ),
+  /*
   COMBO(f_p_combo, KC_UP),
   COMBO(x_c_combo, KC_LEFT),
   COMBO(c_d_combo, KC_DOWN),
   COMBO(d_v_combo, KC_RIGHT),
-    // right hand combinations.
+  */
   COMBO(y_sc_combo, KC_ENTER),
-  COMBO(j_l_combo, KC_DELT),
+  COMBO(j_l_combo, KC_DELT)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -121,9 +160,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_Q,  KC_W,  KC_F,     KC_P,    KC_B,   KC_J,   KC_L,      KC_U,    KC_Y,    KC_SCLN,
       KC_A,  CT_R,  SH_S,     AL_T,    GU_G,   GU_M,   AL_N,      SH_E,    CT_I,    KC_O,
       KC_Z,  KC_X,  KC_C,     KC_D,    KC_V,   KC_K,   KC_H,      KC_DOT,  KC_COMM, KC_SLASH,
-      KC_NO, KC_NO, TAB_MISC, SPC_NUM, KC_NO,  KC_NO,  BSPC_NAV,  DEL_SYM, KC_NO,   KC_NO
+      KC_NO, KC_NO, BSPC_MISC, SPC_NUM, KC_NO,  KC_NO,  SPC_NAV,  BSPC_SYM, KC_NO,   KC_NO
                               ),
 
+
+ // TEMP mv KC_COMM to RESET, combos dont do macros nor RESET
  [_SYM] = LAYOUT_absolem(
        KC_RABK, KC_RCBR, KC_RBRC, KC_RPRN, KC_BSLASH,  KC_TILD, KC_CIRC, KC_PMNS, KC_PLUS, KC_AT ,
        KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, KC_SLASH,   KC_PERC, KC_ASTR, KC_COLN, KC_SCLN, KC_DQT,
@@ -133,7 +174,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_absolem(
       KC_PGUP,   KC_NO,   KC_UP,   KC_NO,    LCTL(KC_GRAVE),   KC_PMNS, KC_P7, KC_P8,  KC_P9, KC_EQL,
-      KC_PGDOWN, KC_LEFT, KC_DOWN, KC_RIGHT, LGUI(KC_GRAVE),          GU_PLS,  AL_P4, SH_P5,  CT_P6, KC_PDOT,
+      KC_PGDOWN, KC_LEFT, KC_DOWN, KC_RIGHT, LGUI(KC_GRAVE),   GU_PLS,  AL_P4, SH_P5,  CT_P6, KC_PDOT,
       KC_APP,    KC_HOME, KC_SPC,  KC_END,   LCA(KC_GRAVE),    KC_P0,   KC_P1, KC_P2,  KC_P3, KC_PCMM,
       KC_NO,     KC_NO,   KC_LCTL, KC_LGUI,  KC_NO,            KC_NO,   KC_NO, KC_NO,  KC_NO, KC_NO
                            ),
