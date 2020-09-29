@@ -52,6 +52,36 @@ enum layer_names {
 #define SH_F8  LSFT_T(KC_F8)
 #define CT_F7  LCTL_T(KC_F7)
 
+#define CT_X  LCTL_T(KC_X)
+#define SH_C  LSFT_T(KC_C)
+#define AL_D  LALT_T(KC_D)
+#define GU_V  LGUI_T(KC_V)
+            
+#define GU_K  LGUI_T(KC_K)
+#define AL_H  LALT_T(KC_H)
+#define SH_DOT  LSFT_T(KC_DOT)
+#define CT_COMM  LCTL_T(KC_COMM)
+
+#define CT_HOME  LCTL_T(KC_HOME)
+#define SH_SPC  LSFT_T(KC_SPC)
+#define AL_END LALT_T(KC_END)
+#define GU_XTRA  LGUI_T(LGUI(KC_GRAVE))
+
+#define GU_P0 LGUI_T(KC_P0)
+#define AL_P1  LALT_T(KC_P1)
+#define SH_P2  LSFT_T(KC_P2)
+#define CT_P3  LCTL_T(KC_P3)
+
+#define CT_3     LCTL_T(KC_3)
+#define SH_2     LSFT_T(KC_2)
+#define AL_1     LALT_T(KC_1)
+#define GU_0  LGUI_T(KC_0)
+
+#define GU_PSCR  LGUI_T(KC_PSCR)
+#define AL_F9  LALT_T(KC_F9)
+#define SH_F8  LSFT_T(KC_F8)
+#define CT_F7  LCTL_T(KC_F7)
+
 
 // layer toggle.
 #define SPC_NUM LT(NUM, KC_SPC)
@@ -158,8 +188,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
  [_COLEMAK] = LAYOUT_absolem(
       KC_Q,  KC_W,  KC_F,     KC_P,    KC_B,   KC_J,   KC_L,      KC_U,    KC_Y,    KC_SCLN,
-      KC_A,  CT_R,  SH_S,     AL_T,    GU_G,   GU_M,   AL_N,      SH_E,    CT_I,    KC_O,
-      KC_Z,  KC_X,  KC_C,     KC_D,    KC_V,   KC_K,   KC_H,      KC_DOT,  KC_COMM, KC_SLASH,
+      KC_A,  KC_R,  KC_S,     KC_T,    KC_G,   KC_M,   KC_N,      KC_E,    KC_I,    KC_O,
+      KC_Z,  CT_X,  SH_C,     AL_D,    GU_V,   GU_K,   AL_H,      SH_DOT,  CT_COMM, KC_SLASH,
       KC_NO, KC_NO, BSPC_MISC, SPC_NUM, KC_NO,  KC_NO,  SPC_NAV,  BSPC_SYM, KC_NO,   KC_NO
                               ),
 
