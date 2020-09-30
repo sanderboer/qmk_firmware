@@ -204,8 +204,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_absolem(
       KC_PGUP,   KC_NO,   KC_UP,   KC_NO,    LCTL(KC_GRAVE),   KC_PMNS, KC_P7, KC_P8,  KC_P9, KC_EQL,
-      KC_PGDOWN, KC_LEFT, KC_DOWN, KC_RIGHT, LGUI(KC_GRAVE),   GU_PLS,  AL_P4, SH_P5,  CT_P6, KC_PDOT,
-      KC_APP,    KC_HOME, KC_SPC,  KC_END,   LCA(KC_GRAVE),    KC_P0,   KC_P1, KC_P2,  KC_P3, KC_PCMM,
+      KC_PGDOWN, KC_LEFT, KC_DOWN, KC_RIGHT, LGUI(KC_GRAVE),   KC_PPLS,  KC_P4, KC_P5,  KC_P6, KC_PDOT,
+      KC_APP,    KC_HOME, KC_SPC,  KC_END,   LCA(KC_GRAVE),    GU_P0,   AL_P1, SH_P2,  CT_P3, KC_PCMM,
       KC_NO,     KC_NO,   KC_LCTL, KC_LGUI,  KC_NO,            KC_NO,   KC_NO, KC_NO,  KC_NO, KC_NO
                            ),
 
