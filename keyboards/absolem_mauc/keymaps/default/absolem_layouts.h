@@ -148,7 +148,7 @@ const uint16_t PROGMEM c_v_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM z_b_combo[] = {KC_Z, KC_B, COMBO_END};
 
 // right hand combinations.
-const uint16_t PROGMEM y_sc_combo[] = {KC_Y, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM y_en_combo[] = {KC_Y, KC_ENTER, COMBO_END};
 const uint16_t PROGMEM l_u_combo[] = {KC_L, KC_U, COMBO_END};
 const uint16_t PROGMEM j_l_combo[] = {KC_J, KC_L, COMBO_END};
 const uint16_t PROGMEM k_h_combo[] = {KC_K, KC_H, COMBO_END};
@@ -182,14 +182,14 @@ combo_t key_combos[COMBO_COUNT] = {
   COMBO(c_d_combo, KC_DOWN),
   COMBO(d_v_combo, KC_RIGHT),
   */
-  COMBO(y_sc_combo, KC_ENTER),
+  COMBO(y_en_combo, KC_ENTER),
   COMBO(j_l_combo, KC_DELT)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
  [_COLEMAK] = LAYOUT_absolem(
-      KC_Q,  KC_W,  KC_F,     KC_P,    KC_B,   KC_J,   KC_L,      KC_U,    KC_Y,    KC_SCLN,
+      KC_Q,  KC_W,  KC_F,     KC_P,    KC_B,   KC_J,   KC_L,      KC_U,    KC_Y,    KC_ENTER,
       KC_A,  KC_R,  KC_S,     KC_T,    KC_G,   KC_M,   KC_N,      KC_E,    KC_I,    KC_O,
       KC_Z,  CT_X,  SH_C,     AL_D,    GU_V,   GU_K,   AL_H,      SH_DOT,  CT_COMM, KC_SLASH,
       KC_NO, KC_NO, BSPC_MISC, SPC_NUM, KC_NO,  KC_NO,  SPC_NAV,  BSPC_SYM, KC_NO,   KC_NO
