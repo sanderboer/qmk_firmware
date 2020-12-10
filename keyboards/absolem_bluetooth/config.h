@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT      absolem_bluetooth
 
 /* key matrix size */
-#define MATRIX_ROWS 5
+#define MATRIX_ROWS 4
 #define MATRIX_COLS 10
 
 /*
@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
  */
 
-#define MATRIX_ROW_PINS { F0, B1, B2, B3, D2 }
+#define MATRIX_ROW_PINS { F0, B1, B2, B3 }
 #define MATRIX_COL_PINS { C7, D6, B7, B6, B5,   F7, F6, F5, F4, F1}
 #define UNUSED_PINS
 
