@@ -123,20 +123,22 @@ void rgblight_set_effect_range(uint8_t start_pos, uint8_t num_leds) {
     rgblight_ranges.effect_num_leds  = num_leds;
 }
 
+__attribute__((weak)) RGB rgblight_hsv_to_rgb(HSV hsv) { return hsv_to_rgb(hsv); }
+
 void sethsv_raw(uint8_t hue, uint8_t sat, uint8_t val, LED_TYPE *led1) {
     HSV hsv = {hue, sat, val};
-    RGB rgb = hsv_to_rgb(hsv);
+    RGB rgb = rgblight_hsv_to_rgb(hsv);
     setrgb(rgb.r, rgb.g, rgb.b, led1);
 }
 
 void sethsv(uint8_t hue, uint8_t sat, uint8_t val, LED_TYPE *led1) { sethsv_raw(hue, sat, val > RGBLIGHT_LIMIT_VAL ? RGBLIGHT_LIMIT_VAL : val, led1); }
 
 void setrgb(uint8_t r, uint8_t g, uint8_t b, LED_TYPE *led1) {
-    (*led1).r = r;
-    (*led1).g = g;
-    (*led1).b = b;
+    led1->r = r;
+    led1->g = g;
+    led1->b = b;
 #ifdef RGBW
-    (*led1).w = 0;
+    led1->w = 0;
 #endif
 }
 
